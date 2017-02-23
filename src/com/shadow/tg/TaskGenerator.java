@@ -3,8 +3,8 @@ package com.shadow.tg;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.shadow.tg.impl.MacModule;
-import com.shadow.tg.impl.TrayModule;
+import com.shadow.tg.module.MacModule;
+import com.shadow.tg.module.TrayModule;
 
 /**
  * 任务生成器

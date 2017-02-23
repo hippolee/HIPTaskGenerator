@@ -1,4 +1,4 @@
-package com.shadow.tg.impl;
+package com.shadow.tg.module;
 
 import java.awt.AWTException;
 import java.awt.MenuItem;

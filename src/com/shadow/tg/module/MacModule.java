@@ -1,4 +1,4 @@
-package com.shadow.tg.impl;
+package com.shadow.tg.module;
 
 import com.apple.eawt.Application;
 import com.apple.eawt.AboutHandler;
@@ -43,7 +43,7 @@ public class MacModule implements IApplicationModule {
 
 			}
 
-		});
+		});		
 	}
 
 }
