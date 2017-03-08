@@ -1,4 +1,4 @@
-package com.shadow.tg.util;
+package com.shadow.app.util;
 
 /**
  * 应用工具类

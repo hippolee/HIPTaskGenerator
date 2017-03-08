@@ -1,0 +1,28 @@
+<?eclipse.ant.import?>
+<project basedir="." default="create-bundle" name="TaskGenerator">
+	<taskdef name="bundleapp" classname="com.oracle.appbundler.AppBundlerTask" classpath="lib/appbundler-1.0.jar" />
+	<property environment="env" />
+	<!-- output stuff -->
+	<property name="release" value="release" />
+
+	<!-- clean -->
+	<target name="clean">
+		<delete dir="${release}" />
+	</target>
+
+	<!-- create mac osx 'bundle' -->
+	<target name="create-bundle" depends="clean">
+		<mkdir dir="${release}" />
+		<bundleapp outputdirectory="${release}" name="TaskGenerator" displayname="TaskGenerator" identifier="com.shadow.app.TaskGenerator" shortversion="0.1" icon="res/icns/TaskGenerator.icns" copyright="Hippo Lee" applicationCategory="public.app-category.utilities" mainclassname="com/shadow/app/TaskGenerator">
+
+			<option value="-Xdock:icon=res/icns/TaskGenerator.icns" />
+			<option value="-Dapple.laf.useScreenMenuBar=true" />
+			<option value="-Dcom.apple.macos.use-file-dialog-packages=true" />
+			<option value="-Dcom.apple.macos.useScreenMenuBar=true" />
+			<option value="-Dapple.awt.application.name=TaskGenerator" />
+			<option value="-Dcom.apple.smallTabs=true" />
+
+			<classpath file="target/TaskGenerator-jar-with-dependencies.jar" />
+		</bundleapp>
+	</target>
+</project>

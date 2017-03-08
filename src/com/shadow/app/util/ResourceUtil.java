@@ -1,11 +1,11 @@
-package com.shadow.tg.util;
+package com.shadow.app.util;
 
 import java.awt.Image;
 import java.io.File;
 
 import javax.swing.ImageIcon;
 
-import com.shadow.tg.constant.IResourceConst;
+import com.shadow.app.constant.IResourceConst;
 
 /**
  * 资源加载工具类

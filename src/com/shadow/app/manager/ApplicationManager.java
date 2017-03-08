@@ -1,17 +1,12 @@
-package com.shadow.tg;
+package com.shadow.app.manager;
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.Iterator;
 import java.util.Vector;
 
 import javax.swing.JFrame;
 
-import com.shadow.tg.constant.IApplicationConst;
-import com.shadow.tg.constant.IResourceConst;
-import com.shadow.tg.itf.IApplicationModule;
-import com.shadow.tg.util.ResourceUtil;
-import com.shadow.tg.util.ResourceUtil.IconSize;
+import com.shadow.app.component.MainFrame;
+import com.shadow.app.module.IApplicationModule;
 
 /**
  * 应用管理器
@@ -53,24 +48,6 @@ public class ApplicationManager {
 	}
 
 	/**
-	 * 注册模块
-	 * 
-	 * @param module
-	 */
-	public void registerModule(IApplicationModule module) {
-		modules.add(module);
-	}
-
-	/**
-	 * 卸载模块
-	 * 
-	 * @param module
-	 */
-	public void unRegisterModule(IApplicationModule module) {
-		modules.remove(module);
-	}
-
-	/**
 	 * 初始化应用
 	 */
 	public void initApplication() {
@@ -87,27 +64,7 @@ public class ApplicationManager {
 	 */
 	private void initMainFrame() {
 		// 主窗体
-		JFrame mainFrame = new JFrame(IApplicationConst.APPLICATION_NAME);
-		// 窗口大小
-		mainFrame.setSize(800, 600);
-		// 居中
-		mainFrame.setLocationRelativeTo(null);
-		// 标题
-		mainFrame.setTitle(IApplicationConst.APPLICATION_NAME);
-		// 图标
-		mainFrame.setIconImage(ResourceUtil.getIconImage(IResourceConst.ICON_APPLICATION, IconSize.ICON_48));
-		// 关闭按钮处理
-		mainFrame.addWindowListener(new WindowAdapter() {
-
-			@Override
-			// 关闭窗口时调用事件
-			public void windowClosing(WindowEvent e) {
-				super.windowClosing(e);
-				// 隐藏窗口
-				mainFrame.dispose();
-			}
-		});
-		this.mainFrame = mainFrame;
+		this.mainFrame = new MainFrame();
 	}
 
 	private void initModules() {
@@ -116,6 +73,24 @@ public class ApplicationManager {
 			IApplicationModule module = (IApplicationModule) it.next();
 			module.initModule();
 		}
+	}
+
+	/**
+	 * 注册模块
+	 * 
+	 * @param module
+	 */
+	public void registerModule(IApplicationModule module) {
+		modules.add(module);
+	}
+
+	/**
+	 * 卸载模块
+	 * 
+	 * @param module
+	 */
+	public void unRegisterModule(IApplicationModule module) {
+		modules.remove(module);
 	}
 
 }

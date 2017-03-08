@@ -1,4 +1,4 @@
-package com.shadow.tg.constant;
+package com.shadow.app.constant;
 
 public interface IResourceConst {
 

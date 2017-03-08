@@ -1,4 +1,4 @@
-package com.shadow.tg.itf;
+package com.shadow.app.module;
 
 /**
  * 模块

@@ -1,4 +1,4 @@
-package com.shadow.tg.module;
+package com.shadow.app.module;
 
 import java.awt.AWTException;
 import java.awt.MenuItem;
@@ -13,12 +13,11 @@ import javax.swing.JFrame;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.shadow.tg.ApplicationManager;
-import com.shadow.tg.constant.IApplicationConst;
-import com.shadow.tg.constant.IResourceConst;
-import com.shadow.tg.itf.IApplicationModule;
-import com.shadow.tg.util.ResourceUtil;
-import com.shadow.tg.util.ResourceUtil.IconSize;
+import com.shadow.app.constant.IApplicationConst;
+import com.shadow.app.constant.IResourceConst;
+import com.shadow.app.manager.ApplicationManager;
+import com.shadow.app.util.ResourceUtil;
+import com.shadow.app.util.ResourceUtil.IconSize;
 
 /**
  * 系统托盘模块
@@ -30,7 +29,7 @@ import com.shadow.tg.util.ResourceUtil.IconSize;
 public class TrayModule implements IApplicationModule {
 
 	/** Logger */
-	public static Logger logger = LoggerFactory.getLogger(TrayModule.class);
+	private static Logger logger = LoggerFactory.getLogger(TrayModule.class);
 
 	/** 显示/隐藏主窗口 */
 	public static final String AC_TOGGLE_MAIN = "AC_TOGGLE_MAIN";
@@ -76,10 +75,16 @@ public class TrayModule implements IApplicationModule {
 				if (AC_TOGGLE_MAIN.equals(e.getActionCommand())) {
 					JFrame mainFrame = ApplicationManager.getInstance().getMainFrame();
 					if (mainFrame.isVisible()) {
-						mainFrame.dispose();
+						if (mainFrame.getState() == JFrame.ICONIFIED) {
+							mainFrame.setState(JFrame.NORMAL);
+							mainFrame.requestFocus();
+						} else if (!mainFrame.isActive()) {
+							mainFrame.requestFocus();
+						} else {
+							mainFrame.setVisible(false);
+						}
 					} else {
 						mainFrame.setVisible(true);
-						mainFrame.toFront();
 					}
 				} else if (AC_QUIT.equals(e.getActionCommand())) {// 退出
 					System.exit(0);
