@@ -1,0 +1,11 @@
+package com.hippolee.app.constant;
+
+public interface IResourceConst {
+
+	/** 图标后缀 */
+	public static final String ICON_SUFFIX_PNG = ".png";
+
+	/** 应用图标 */
+	public static final String ICON_APPLICATION = "icon_application";
+
+}
